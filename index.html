@@ -35,17 +35,24 @@
     font-size: 14px;
     color: #000;
   }
-  button {
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 15px;
+  }
+  .buttons button {
+    width: 30%; /* Adjust width for three buttons */
     background: #ed2127;
     color: white;
     border: none;
     padding: 8px 14px;
-    margin-top: 15px;
     border-radius: 4px;
     cursor: pointer;
   }
-  button + button {
-    margin-left: 8px;
+  .buttons button.reset {
+    background: #555;
   }
 </style>
 </head>
@@ -54,21 +61,24 @@
 <!-- Form -->
 <form id="signatureForm">
   <h2>Signature Generator</h2>
+
   <label>First Name:</label>
-  <input type="text" id="firstName" value="Jane" oninput="updateEmailPreview()">
+  <input type="text" id="firstName" placeholder="Jane" oninput="updatePreview()">
 
   <label>Last Name:</label>
-  <input type="text" id="lastName" value="Smith">
+  <input type="text" id="lastName" placeholder="Smith" oninput="updatePreview()">
 
   <label>Job Title:</label>
-  <input type="text" id="jobTitle" value="Your Job Title">
+  <input type="text" id="jobTitle" placeholder="Your Job Title" oninput="updatePreview()">
 
   <label>Email (auto-generated):</label>
-  <input type="text" id="email" value="jane@mindroom.edu.au" readonly>
+  <input type="text" id="email" placeholder="jane@mindroom.edu.au" readonly>
 
-  <button type="button" onclick="generateSignature()">Generate</button>
-  <button type="button" onclick="copyHTML()">Copy HTML</button>
-  <button type="button" onclick="copyRichSignature()">Copy Signature (for Outlook)</button>
+  <div class="buttons">
+    <button type="button" class="reset" onclick="resetForm()">Reset</button>
+    <button type="button" onclick="copyHTML()">Copy HTML</button>
+    <button type="button" onclick="copyRichSignature()">Copy Signature</button>
+  </div>
 </form>
 
 <!-- Preview -->
@@ -82,16 +92,38 @@ const fixedDomain = "@mindroom.edu.au";
 const fixedPhone = "+61 07 5535 8013";
 const fixedAddress = "1/37 Connor St, Burleigh Heads QLD 4220";
 
-function updateEmailPreview() {
-  const firstName = document.getElementById('firstName').value.trim().toLowerCase();
-  document.getElementById('email').value = firstName ? `${firstName}${fixedDomain}` : '';
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
-function generateSignature() {
-  const firstName = capitalize(document.getElementById('firstName').value.trim());
-  const lastName = capitalize(document.getElementById('lastName').value.trim());
+// Update preview in real-time
+function updatePreview() {
+  const firstNameInput = document.getElementById('firstName').value.trim();
+  const lastNameInput = document.getElementById('lastName').value.trim();
   const jobTitle = document.getElementById('jobTitle').value.trim();
-  const email = document.getElementById('email').value.trim();
+
+  // Auto-generate email
+  const email = firstNameInput.toLowerCase() ? `${firstNameInput.toLowerCase()}${fixedDomain}` : '';
+  document.getElementById('email').value = email;
+
+  // Update preview if any field is filled
+  if (firstNameInput || lastNameInput || jobTitle) {
+    generateSignature();
+  } else {
+    document.getElementById('signatureOutput').innerHTML = '';
+  }
+}
+
+// Generate signature HTML
+function generateSignature() {
+  const firstNameInput = document.getElementById('firstName').value.trim();
+  const lastNameInput = document.getElementById('lastName').value.trim();
+  const jobTitle = document.getElementById('jobTitle').value.trim();
+  const firstName = capitalize(firstNameInput);
+  const lastName = capitalize(lastNameInput);
+  const email = firstNameInput.toLowerCase() + fixedDomain;
+
+  document.getElementById('email').value = email;
 
   const signatureHTML = `
   <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial; font-size: 14px; color: #000;">
@@ -149,6 +181,7 @@ function generateSignature() {
   document.getElementById('signatureOutput').innerHTML = signatureHTML;
 }
 
+// Copy raw HTML
 function copyHTML() {
   const temp = document.createElement('textarea');
   temp.value = document.getElementById('signatureOutput').innerHTML;
@@ -159,7 +192,7 @@ function copyHTML() {
   alert('✅ HTML code copied to clipboard!');
 }
 
-// 🧠 NEW FUNCTION — Copies actual visual signature with images & formatting
+// Copy rich signature for Outlook
 async function copyRichSignature() {
   const signatureDiv = document.getElementById('signatureOutput');
   const html = signatureDiv.innerHTML;
@@ -174,11 +207,13 @@ async function copyRichSignature() {
   }
 }
 
-function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+// Reset form and preview
+function resetForm() {
+  document.getElementById('signatureForm').reset();
+  document.getElementById('signatureOutput').innerHTML = '';
+  document.getElementById('email').value = '';
 }
 </script>
 
 </body>
 </html>
-
