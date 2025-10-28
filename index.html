@@ -1,1 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Email Signature Generator - Mindroom Innovation</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    display: flex;
+    gap: 40px;
+  }
+  form {
+    width: 300px;
+  }
+  label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+  }
+  input {
+    width: 100%;
+    padding: 6px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .preview {
+    flex: 1;
+    border-left: 2px solid #ed2127;
+    padding-left: 20px;
+  }
+  .signature {
+    font-family: Arial;
+    font-size: 14px;
+    color: #000;
+  }
+  button {
+    background: #ed2127;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    margin-top: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  button + button {
+    margin-left: 8px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Form -->
+<form id="signatureForm">
+  <h2>Signature Generator</h2>
+  <label>First Name:</label>
+  <input type="text" id="firstName" value="Jane" oninput="updateEmailPreview()">
+
+  <label>Last Name:</label>
+  <input type="text" id="lastName" value="Smith">
+
+  <label>Job Title:</label>
+  <input type="text" id="jobTitle" value="Marketing Manager">
+
+  <label>Email (auto-generated):</label>
+  <input type="text" id="email" value="jane@mindroom.edu.au" readonly>
+
+  <button type="button" onclick="generateSignature()">Generate</button>
+  <button type="button" onclick="copyHTML()">Copy HTML</button>
+  <button type="button" onclick="copyRichSignature()">Copy Signature (for Outlook)</button>
+</form>
+
+<!-- Preview -->
+<div class="preview">
+  <h3>Signature Preview</h3>
+  <div id="signatureOutput" class="signature"></div>
+</div>
+
+<script>
+const fixedDomain = "@mindroom.edu.au";
+const fixedPhone = "+61 07 5535 8013";
+const fixedAddress = "1/37 Connor St, Burleigh Heads QLD 4220";
+
+function updateEmailPreview() {
+  const firstName = document.getElementById('firstName').value.trim().toLowerCase();
+  document.getElementById('email').value = firstName ? `${firstName}${fixedDomain}` : '';
+}
+
+function generateSignature() {
+  const firstName = capitalize(document.getElementById('firstName').value.trim());
+  const lastName = capitalize(document.getElementById('lastName').value.trim());
+  const jobTitle = document.getElementById('jobTitle').value.trim();
+  const email = document.getElementById('email').value.trim();
+
+  const signatureHTML = `
+  <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial; font-size: 14px; color: #000;">
+    <tr>
+      <td width="150" style="vertical-align: middle;">
+        <img src="https://www.mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/download.png" width="130" style="margin-right:20px;">
+      </td>
+      <td style="vertical-align: middle;">
+        <h2 style="margin:0; font-size:18px; font-weight:600;">${firstName} ${lastName}</h2>
+        <p style="margin:0; font-size:14px;">${jobTitle}</p>
+        <p style="margin:0; font-weight:500; font-size:14px;">Mindroom Innovation</p>
+        <p style="margin:0; font-size:10px;">CRICOS: 03586M | RTO: 45137</p>
+      </td>
+      <td width="30"></td>
+      <td style="border-left:1px solid #ed2127; width:1px;"></td>
+      <td width="30"></td>
+      <td style="vertical-align: middle;">
+        <table style="font-size:12px;">
+          <tr>
+            <td><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/call.png" width="13"></td>
+            <td><a href="tel:${fixedPhone}" style="color:#000; text-decoration:none;">${fixedPhone}</a></td>
+          </tr>
+          <tr>
+            <td><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/email.png" width="13"></td>
+            <td><a href="mailto:${email}" style="color:#000; text-decoration:none;">${email}</a></td>
+          </tr>
+          <tr>
+            <td><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/web.png" width="13"></td>
+            <td><a href="https://www.mindroom.edu.au" style="color:#000; text-decoration:none;">www.mindroom.edu.au</a></td>
+          </tr>
+          <tr>
+            <td><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/address.png" width="13"></td>
+            <td>${fixedAddress}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr><td colspan="6" style="border-bottom:1px solid #ed2127; padding-top:10px;"></td></tr>
+    <tr>
+      <td colspan="6" style="padding-top:10px;">
+        <table>
+          <tr>
+            <td><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/icons8-follow-64.png" width="54"></td>
+            <td><a href="https://www.facebook.com/mindroominnovation"><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/icons8-facebook-50.png" width="28"></a></td>
+            <td><a href="https://au.linkedin.com/school/mindroom-innovation/"><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/icons8-linkedin-50.png" width="28"></a></td>
+            <td><a href="https://www.instagram.com/mindroom_innovation/"><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/icons8-instagram-50.png" width="28"></a></td>
+            <td><a href="https://www.youtube.com/channel/UCCGYCE7oFg4RFl3mjv5xAvA"><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/icons8-youtube-50.png" width="28"></a></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  `;
+
+  document.getElementById('signatureOutput').innerHTML = signatureHTML;
+}
+
+function copyHTML() {
+  const temp = document.createElement('textarea');
+  temp.value = document.getElementById('signatureOutput').innerHTML;
+  document.body.appendChild(temp);
+  temp.select();
+  document.execCommand('copy');
+  document.body.removeChild(temp);
+  alert('✅ HTML code copied to clipboard!');
+}
+
+// 🧠 NEW FUNCTION — Copies actual visual signature with images & formatting
+async function copyRichSignature() {
+  const signatureDiv = document.getElementById('signatureOutput');
+  const html = signatureDiv.innerHTML;
+  const blob = new Blob([html], { type: "text/html" });
+  const data = [new ClipboardItem({ "text/html": blob })];
+  
+  try {
+    await navigator.clipboard.write(data);
+    alert('✅ Signature copied! Now paste it directly into Outlook (Ctrl+V).');
+  } catch (err) {
+    alert('⚠️ Your browser blocked clipboard access. Please use Chrome or Edge.');
+  }
+}
+
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
+</script>
+
+</body>
+</html>
 
