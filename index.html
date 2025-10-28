@@ -227,7 +227,7 @@ async function copyRichSignature() {
   
   try {
     await navigator.clipboard.write(data);
-    showDialog('Signature copied! Now paste it into Outlook Signature.');
+    showDialog('Signature copied! Now paste it into Outlook Signature (Ctrl+V).');
   } catch (err) {
     showDialog('⚠️ Your browser blocked clipboard access. Please use Chrome or Edge.');
   }
