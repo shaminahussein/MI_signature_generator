@@ -57,6 +57,27 @@
 </style>
 </head>
 <body>
+<div id="dialogBox" style="
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;       /* inverted background */
+  color: #ed2127;                /* red text */
+  border: 2px solid #ed2127;    /* red border */
+  padding: 12px 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  display: none;
+  z-index: 9999;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  min-width: 200px;
+">
+  Copied to clipboard!
+</div>
+
 
 <!-- Form -->
 <form id="signatureForm">
@@ -189,8 +210,13 @@ function copyHTML() {
   temp.select();
   document.execCommand('copy');
   document.body.removeChild(temp);
-  alert('✅ HTML code copied to clipboard!');
+
+showDialog('HTML code copied to clipboard!');
+
+
+
 }
+
 
 // Copy rich signature for Outlook
 async function copyRichSignature() {
@@ -201,9 +227,9 @@ async function copyRichSignature() {
   
   try {
     await navigator.clipboard.write(data);
-    alert('✅ Signature copied! Now paste it directly into Outlook (Ctrl+V).');
+    showDialog('Signature copied! Now paste it into Outlook Signature.');
   } catch (err) {
-    alert('⚠️ Your browser blocked clipboard access. Please use Chrome or Edge.');
+    showDialog('⚠️ Your browser blocked clipboard access. Please use Chrome or Edge.');
   }
 }
 
@@ -213,6 +239,16 @@ function resetForm() {
   document.getElementById('signatureOutput').innerHTML = '';
   document.getElementById('email').value = '';
 }
+function showDialog(message, duration = 2000) {
+  const dialog = document.getElementById('dialogBox');
+  dialog.textContent = message;
+  dialog.style.display = 'block';
+
+  setTimeout(() => {
+    dialog.style.display = 'none';
+  }, duration);
+}
+
 </script>
 
 </body>
