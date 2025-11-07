@@ -100,7 +100,7 @@ button { padding:10px 20px; background:#ed2127; color:white; border:none; border
   </tr>
 </table>
 </div>
-
+<br>
 <button onclick="copySignature()">Copy Signature (for Outlook)</button> <button onclick="copyHTML()">Copy Signature (HTML Version)</button>
 
 <script>
