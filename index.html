@@ -147,56 +147,137 @@ function generateSignature() {
   document.getElementById('email').value = email;
 
   const signatureHTML = `
-  <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial; font-size: 14px; color: #000;">
-    <tr>
-      <td width="150" style="vertical-align: middle;">
-        <img src="https://www.mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/download.png" width="130" style="margin-right:20px;">
-      </td>
-      <td style="vertical-align: middle;">
-        <h2 style="margin:0; font-size:18px; font-weight:600;">${firstName} ${lastName}</h2>
-        <p style="margin:0; font-size:14px;">${jobTitle}</p>
-        <p style="margin:0; font-weight:500; font-size:14px;">Mindroom Innovation</p>
-        <p style="margin:0; font-size:10px;">CRICOS: 03586M | RTO: 45137</p>
-      </td>
-      <td width="30"></td>
-      <td style="border-left:1px solid #ed2127; width:1px;"></td>
-      <td width="30"></td>
-      <td style="vertical-align: middle;">
-        <table style="font-size:12px;">
-          <tr>
-            <td><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/call.png" width="13"></td>
-            <td><a href="tel:${fixedPhone}" style="color:#000; text-decoration:none;">${fixedPhone}</a></td>
-          </tr>
-          <tr>
-            <td><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/email.png" width="13"></td>
-            <td><a href="mailto:${email}" style="color:#000; text-decoration:none;">${email}</a></td>
-          </tr>
-          <tr>
-            <td><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/web.png" width="13"></td>
-            <td><a href="https://www.mindroom.edu.au" style="color:#000; text-decoration:none;">www.mindroom.edu.au</a></td>
-          </tr>
-          <tr>
-            <td><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/address.png" width="13"></td>
-            <td>${fixedAddress}</td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-    <tr><td colspan="6" style="border-bottom:1px solid #ed2127; padding-top:10px;"></td></tr>
-    <tr>
-      <td colspan="6" style="padding-top:10px;">
-        <table>
-          <tr>
-            <td><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/icons8-follow-64.png" width="54"></td>
-            <td><a href="https://www.facebook.com/mindroominnovation"><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/icons8-facebook-50.png" width="28"></a></td>
-            <td><a href="https://au.linkedin.com/school/mindroom-innovation/"><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/icons8-linkedin-50.png" width="28"></a></td>
-            <td><a href="https://www.instagram.com/mindroom_innovation/"><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/icons8-instagram-50.png" width="28"></a></td>
-            <td><a href="https://www.youtube.com/channel/UCCGYCE7oFg4RFl3mjv5xAvA"><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/icons8-youtube-50.png" width="28"></a></td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
+  <table cellpadding="0" cellspacing="0" style="font-family: Arial, sans-serif; font-size: 14px;line-height: 20px;">
+  <tr>
+    <td style="padding: 10px 0;">
+      <!-- Logo -->
+      <p style="margin:0;">
+        <img src="https://www.mindroom.edu.au/wp-content/uploads/2026/mi_logo.png" alt="Mindroom Institute" width="250" style="display: block;">
+      </p>
+
+      <!-- Name and Title -->
+      <p style="margin: 14px 0 0 0; font-weight: bold;color: #ED1227;">${firstName} ${lastName}</p>
+      <p style="margin: 0;">${jobTitle}</p>
+
+      <!-- Contact Info -->
+      <p style="margin: 14px 0 0 0;">
+        (07) 3253 4853  <span style="color: #ED1227;">|</span>  +61 0430 123 456  <span style="color: #ED1227;">|</span> 
+        <a href="mailto:carmen@mindroom.edu.au" style="color:#1a73e8; text-decoration: none;">${email}</a>
+      </p>
+      <p style="margin:0;">1/37 Connor St, Burleigh Heads Q 4220</p>
+
+      <p style="margin: 14px 0 14px 0;">
+        <a href="https://mindroom.edu.au" style="color:#ED1227; text-decoration: none; font-weight: bold;">mindroom.edu.au</a>
+      </p>
+
+
+
+
+
+
+
+
+      <table cellpadding="0" cellspacing="0" style="margin-top: 4px;">
+        <tr>
+                  <td style="padding-right: 6px;">
+            <a href="https://www.facebook.com/mindroominstitute" target="_blank">
+              <img src="https://www.mindroom.edu.au/wp-content/uploads/2026/setA/icon_followus.png" alt="Follow Us" width="90" style="display:block;">
+            </a>
+          </td>
+          
+          <td style="padding-right: 4px;">
+            <a href="https://www.facebook.com/mindroominstitute" target="_blank">
+              <img src="https://www.mindroom.edu.au/wp-content/uploads/2026/setB/icon_facebook.png" alt="Facebook" width="25" style="display:block;">
+            </a>
+          </td>
+          <td style="padding-right: 4px;">
+            <a href="https://www.facebook.com/mindroominstitute" target="_blank">
+              <img src="https://www.mindroom.edu.au/wp-content/uploads/2026/setB/icon_linkedin.png" alt="Linked In" width="25" style="display:block;">
+            </a>
+          </td>          <td style="padding-right: 4px;">
+            <a href="https://www.facebook.com/mindroominstitute" target="_blank">
+              <img src="https://www.mindroom.edu.au/wp-content/uploads/2026/setB/icon_instagram.png" alt="Instagram" width="25" style="display:block;">
+            </a>
+          </td>          <td style="padding-right: 4px;">
+            <a href="https://www.facebook.com/mindroominstitute" target="_blank">
+              <img src="https://www.mindroom.edu.au/wp-content/uploads/2026/setB/icon_threads.png" alt="Threads" width="25" style="display:block;">
+            </a>
+          </td>
+                    <td style="padding-right: 4px;">
+            <a href="https://www.facebook.com/mindroominstitute" target="_blank">
+              <img src="https://www.mindroom.edu.au/wp-content/uploads/2026/setB/icon_tiktok.png" alt="Tiktok" width="25" style="display:block;">
+            </a>
+          </td>
+                    <td style="padding-right: 15px;">
+            <a href="https://www.facebook.com/mindroominstitute" target="_blank">
+              <img src="https://www.mindroom.edu.au/wp-content/uploads/2026/setB/icon_youtube.png" alt="Youtube" width="25" style="display:block;">
+            </a>
+          </td>
+                              <td style="padding-right: 4px;font-size: 10px;vertical-align: middle;">
+
+        CRICOS 03586M   <span style="color: #ED1227;">|</span>   RTO 45137
+
+
+          </td>
+        </tr>
+      </table>
+            <p style="margin: 14px 0 0 0; font-size: 10px;">
+        Mindroom Innovation Pty Ltd (ABN 70 613 600 552) trading as Mindroom Institute.
+      </p>
+    </td>
+  </tr>
+</table>
+
+  // <table cellpadding="0" cellspacing="0" border="0" style="font-family: Arial; font-size: 14px; color: #000;">
+  //   <tr>
+  //     <td width="150" style="vertical-align: middle;">
+  //       <img src="https://www.mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/download.png" width="130" style="margin-right:20px;">
+  //     </td>
+  //     <td style="vertical-align: middle;">
+  //       <h2 style="margin:0; font-size:18px; font-weight:600;">${firstName} ${lastName}</h2>
+  //       <p style="margin:0; font-size:14px;">${jobTitle}</p>
+  //       <p style="margin:0; font-weight:500; font-size:14px;">Mindroom Innovation</p>
+  //       <p style="margin:0; font-size:10px;">CRICOS: 03586M | RTO: 45137</p>
+  //     </td>
+  //     <td width="30"></td>
+  //     <td style="border-left:1px solid #ed2127; width:1px;"></td>
+  //     <td width="30"></td>
+  //     <td style="vertical-align: middle;">
+  //       <table style="font-size:12px;">
+  //         <tr>
+  //           <td><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/call.png" width="13"></td>
+  //           <td><a href="tel:${fixedPhone}" style="color:#000; text-decoration:none;">${fixedPhone}</a></td>
+  //         </tr>
+  //         <tr>
+  //           <td><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/email.png" width="13"></td>
+  //           <td><a href="mailto:${email}" style="color:#000; text-decoration:none;">${email}</a></td>
+  //         </tr>
+  //         <tr>
+  //           <td><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/web.png" width="13"></td>
+  //           <td><a href="https://www.mindroom.edu.au" style="color:#000; text-decoration:none;">www.mindroom.edu.au</a></td>
+  //         </tr>
+  //         <tr>
+  //           <td><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/address.png" width="13"></td>
+  //           <td>${fixedAddress}</td>
+  //         </tr>
+  //       </table>
+  //     </td>
+  //   </tr>
+  //   <tr><td colspan="6" style="border-bottom:1px solid #ed2127; padding-top:10px;"></td></tr>
+  //   <tr>
+  //     <td colspan="6" style="padding-top:10px;">
+  //       <table>
+  //         <tr>
+  //           <td><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/icons8-follow-64.png" width="54"></td>
+  //           <td><a href="https://www.facebook.com/mindroominnovation"><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/icons8-facebook-50.png" width="28"></a></td>
+  //           <td><a href="https://au.linkedin.com/school/mindroom-innovation/"><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/icons8-linkedin-50.png" width="28"></a></td>
+  //           <td><a href="https://www.instagram.com/mindroom_innovation/"><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/icons8-instagram-50.png" width="28"></a></td>
+  //           <td><a href="https://www.youtube.com/channel/UCCGYCE7oFg4RFl3mjv5xAvA"><img src="https://mindroom.edu.au/wp-content/uploads/2024/images_signature_2024/icons8-youtube-50.png" width="28"></a></td>
+  //         </tr>
+  //       </table>
+  //     </td>
+  //   </tr>
+  // </table>
   `;
 
   document.getElementById('signatureOutput').innerHTML = signatureHTML;
